@@ -1,0 +1,17 @@
+{
+    "name": "kyurzburg/asynctaskcb",
+    "type": "library",
+    "license": "Apache-2.0",
+    "autoload": {
+        "psr-4": {
+            "kyurzburg\\asynctaskcb\\": "src/kyurzburg/asynctaskcb"
+        }
+    },
+    "authors": [
+        {
+            "name": "kyurzburg",
+            "email": "kyurzburg@gmail.com"
+        }
+    ],
+    "require": {}
+}

@@ -13,5 +13,11 @@
             "email": "kyurzburg@gmail.com"
         }
     ],
-    "require": {}
+    "require": {},
+    "extra": {
+      "virion": {
+        "spec": "3.0",
+        "namespace-root": "kyurzburg\\asynctaskcb"
+      }
+    }
 }

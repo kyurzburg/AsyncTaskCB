@@ -16,7 +16,7 @@ class ExampleTask extends AsyncCallbackTask{
 
 Step 2: Send it
 ```php
-AsyncTaskCB::new(AsyncCallbackTask $task, function(mixed $result){
+AsyncTaskCB::new(new ExampleTask(), function(mixed $result){
 #Your code here
 });
 ```

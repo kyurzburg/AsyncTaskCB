@@ -2,24 +2,28 @@
 
 namespace kyurzburg\asynctaskcb;
 
-use pocketmine\scheduler\AsyncTask;
+use pocketmine\Server;
 
-abstract class AsyncTaskCB extends AsyncTask{
+class AsyncTaskCB{
 
-    private int $callback_id;
+    private static int $next_id = 0;
 
-    public function setCallbackId(int $id) : void {
-        $this->callback_id = $id;
+    /** @var \Closure[] */
+    private static array $callbacks = [];
+
+    public static function getNextId() : int {
+        return self::$next_id++;
     }
 
-    public function getCallbackId() : int {
-        return $this->callback_id;
+    public static function new(AsyncCallbackTask $task, callable $callback){
+        $id = self::getNextId();
+        self::$callbacks[$id] = $callback;
+
+        Server::getInstance()->getAsyncPool()->submitTask($task);
     }
 
-    /**
-     * @see AsyncTaskCallbacks::resolve()
-     */
-    public function onCompletion() : void {
-        AsyncTaskCallbacks::resolve($this->callback_id, $this->getResult());
+    public static function resolve(int $id, mixed $result) : void {
+        (self::$callbacks[$id])($result);
+        unset(self::$callbacks[$id]);
     }
 }

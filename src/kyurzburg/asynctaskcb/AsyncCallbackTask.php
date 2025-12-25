@@ -4,7 +4,7 @@ namespace kyurzburg\asynctaskcb;
 
 use pocketmine\scheduler\AsyncTask;
 
-class AsyncCallbackTask extends AsyncTask{
+abstract class AsyncCallbackTask extends AsyncTask{
 
     private int $callback_id;
 
@@ -15,8 +15,6 @@ class AsyncCallbackTask extends AsyncTask{
     public function getCallbackId() : int {
         return $this->callback_id;
     }
-
-    public function onRun() : void {}
 
     /**
      * @see AsyncTaskCB::resolve()

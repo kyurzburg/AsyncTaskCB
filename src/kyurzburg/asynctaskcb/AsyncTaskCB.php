@@ -18,7 +18,7 @@ class AsyncTaskCB{
     public static function new(AsyncCallbackTask $task, ?callable $callback = null){
         $id = self::getNextId();
         self::$callbacks[$id] = $callback ?? function($result){};
-
+        
         Server::getInstance()->getAsyncPool()->submitTask($task);
     }
 
